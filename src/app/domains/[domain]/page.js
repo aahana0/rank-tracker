@@ -14,7 +14,6 @@ const MySwal = withReactContent(Swal);
 export default function DomainPage(props) {
   const [keywords, setKeywords] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
   const domain = props.params.domain;
   const router = useRouter();
   useEffect(() => {
@@ -35,9 +34,20 @@ export default function DomainPage(props) {
 
   function showDeletePopup() {
     MySwal.fire({
-      title: <p>Hello World</p>,
-    }).then(() => {
-      return MySwal.fire(<p>Shorthand works too</p>);
+      title: 'Delete',
+      text: `Do you want to delete ${domain}?`,
+      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Delete',
+      confirmButtonColor: '#f00',
+      showCloseButton:true,
+      showCancelButton: true,
+      reverseButtons: true,
+      focusCancel: true,
+      focusConfirm: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteDomain()
+      }
     });
   }
 

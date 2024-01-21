@@ -4,6 +4,7 @@ import axios from 'axios';
 import DomParser from 'dom-parser';
 import mongoose from 'mongoose';
 import { getServerSession } from 'next-auth';
+import {URL} from 'url';
 
 async function getIconUrl(domain) {
   const response = await axios.get(`https://` + domain);
@@ -46,4 +47,14 @@ export async function GET() {
   mongoose.connect(process.env.MONGODB_URI);
   const session = await getServerSession(authOptions);
   return Response.json(await Domain.find({ owner: session.user?.email }));
+}
+
+export async function DELETE(req) {
+    mongoose.connect(process.env.MONGODB_URI);
+    const url = new URL(req.url);
+    const domain = url.searchParams.get('domain');
+    const session = await getServerSession(authOptions);
+    await Domain.deleteOne({ owner: session.user?.email, domain });
+
+    return Response.json(true);
 }
