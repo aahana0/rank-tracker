@@ -63,6 +63,9 @@ export default function DomainPage(props) {
       <NewKeywordForm domain={domain} onNew={fetchKeywords} />
       {loading && <div>loading...</div>}
       {!loading && keywords.map((keyword) => <KeywordRow {...keyword} />)}
+      {!loading && !keywords?.length && (
+        <div>No keywords found...</div>
+      )}
     </div>
   );
 }
