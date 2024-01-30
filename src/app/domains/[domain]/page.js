@@ -54,7 +54,7 @@ export default function DomainPage(props) {
   return (
     <div>
       <div className='flex items-end'>
-        <DoubleHeader preTitle={'domains'} mainTitle={domain} />
+        <DoubleHeader preTitle={'domains'} preTitleLink={'/'} mainTitle={domain} />
         <div className='p-2'>
           <DeleteButton onClick={showDeletePopup} />
         </div>

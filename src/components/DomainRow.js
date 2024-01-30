@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-export default function DomainRow({ owner, domain, icon }) {
-  const keywords = ['github', 'git', 'copilot', 'git share code', 'free git repos'];
+export default function DomainRow({ owner, domain, icon, keywords }) {
   return (
     <div className='flex gap-2 bg-white border border-blue-300 border-b-4 p-4 rounded-lg items-center my-3 '>
       {icon && <img src={icon} className='h-12' />}
@@ -9,9 +8,9 @@ export default function DomainRow({ owner, domain, icon }) {
           <div>
               <Link href={'/domains/'+domain} className='font-bold text-xl leading-5 block'>{ domain}</Link>
        
-        {keywords.map((keyword) => (
+        {keywords.map((keywordDoc) => (
           <>
-            <span className='text-xs text-gray-500 bg-slate-100 rounded-md p-1 mt-1 inline-block '>{keyword}</span>{' '}
+            <Link href={'/domains/'+domain+'/'+keywordDoc.keyword} className='text-xs text-gray-500 bg-slate-100 rounded-md p-1 mt-1 inline-block '>{keywordDoc.keyword}</Link>{' '}
           </>
         ))}
       </div>

@@ -3,6 +3,7 @@
 import DoubleHeader from '@/components/DoubleHeader';
 import { signIn } from 'next-auth/react';
 
+
 export default function LoginScreen() {
   return (
     <div className='bg-white mt-8 max-w-md border border-blue-100 border-b-4 mx-auto rounded-xl p-4 py-6 text-center'>
